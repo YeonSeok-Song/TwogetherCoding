@@ -2,7 +2,11 @@ import { Card, Button, Row, Col, Modal } from "react-bootstrap"
 import {useState} from 'react'
 import * as Api from "../../api"
 
+<<<<<<< HEAD:front/src/components/certificate/CertificateCard.js
 const CertificateCard = ({ certificate, isEditable, setIsEditing, setCertificates }) => {
+=======
+const AwardCard = ({ _award, isEditable, setIsEditing, setAwards, page }) => {
+>>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardCard.js
     // Modal 관련 State
     const slicingDate = (date) => {
         return date.slice(0, 10)
@@ -13,12 +17,23 @@ const CertificateCard = ({ certificate, isEditable, setIsEditing, setCertificate
     const handleClose = () => setShow(false)
 
     const handleDelete = async (id) => {
+<<<<<<< HEAD:front/src/components/certificate/CertificateCard.js
         const res = await Api.delete(`certificate/${id}`)
         const {status, message} = res
         if(status === 200) {
             setCertificates((cur) => {
                 const newCertificates = [...cur]
                 let filtered = newCertificates.filter(v => v.id !== id)
+=======
+        const res = await Api.delete(`awards/${id}`, {
+            page
+        })
+        const {status, message} = res
+        if(status === 200) {
+            setAwards((cur) => {
+                const newAwards = [...cur]
+                let filtered = newAwards.filter(v => v.id !== id)
+>>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardCard.js
                 return filtered
             })
         } else {
@@ -29,7 +44,11 @@ const CertificateCard = ({ certificate, isEditable, setIsEditing, setCertificate
     return (
         <>
             <Card.Body>
+<<<<<<< HEAD:front/src/components/certificate/CertificateCard.js
                 {/* certificate의 자격증 이름과 상세내용, 취득일자를 출력 */}
+=======
+                {/* award의 수상내용과 상세내용을 출력 */}
+>>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardCard.js
                 <Row className="align-items-center">
                     <Col>
                         <span>{certificate.title}</span>

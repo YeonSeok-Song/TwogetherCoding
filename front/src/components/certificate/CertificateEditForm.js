@@ -3,9 +3,15 @@ import { Button, Form, Col, Row } from "react-bootstrap"
 import * as Api from "../../api"
 import DatePicker from 'react-datepicker'
 
+<<<<<<< HEAD:front/src/components/certificate/CertificateEditForm.js
 const CertificateEditForm = ({ currentCertificate, setCertificates, setIsEditing, page }) => {
     // 편집 버튼을 누른 항목의 자격증 제목을 담을 title 변수 선언.
     const [title, setTitle] = useState(currentCertificate.title)
+=======
+const AwardEditForm = ({ currentAward, setAwards, setIsEditing, page }) => {
+    // 편집 버튼을 누른 항목의 수상내용을 담을 title 변수 선언.
+    const [award, setAward] = useState(currentAward.award)
+>>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardEditForm.js
     // 편집 버튼을 누른 항목의 상세내용을 담을 description 변수 선언.
     const [description, setDescription] = useState(currentCertificate.description)
     // 편집 버튼을 누른 항목의 취득일자를 담을 date 변수 선언.
@@ -19,6 +25,7 @@ const CertificateEditForm = ({ currentCertificate, setCertificates, setIsEditing
         const user_id = currentCertificate.user_id
 
         // put 요청.
+<<<<<<< HEAD:front/src/components/certificate/CertificateEditForm.js
         await Api.post(`certificate/${currentCertificate.id}`, {
             title,
             description,
@@ -28,6 +35,16 @@ const CertificateEditForm = ({ currentCertificate, setCertificates, setIsEditing
         // put 요청값과 함께 각각의 Certificate들의 모임인 Certificates를 다시 렌더링
         const res = await Api.get("certificatelist", `${user_id}?page=${page}&perPage=3`)
         setCertificates(res.data.certificates)
+=======
+        await Api.post(`award/${currentAward.id}`, {
+            changeAward: award,
+            changeDescription: description,
+        })
+
+        // put 요청값과 함께 각각의 Award들의 모임인 Awards를 다시 렌더링
+        const res = await Api.get("awardlist", `${user_id}?page=${page}&perPage=3`)
+        setAwards(res.data.awards)
+>>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardEditForm.js
         // 편집 상태 종료.
         setIsEditing(false)
     }
