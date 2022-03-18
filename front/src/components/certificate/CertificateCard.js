@@ -17,13 +17,17 @@ const AwardCard = ({ _award, isEditable, setIsEditing, setAwards, page }) => {
     const handleClose = () => setShow(false)
 
     const handleDelete = async (id) => {
+<<<<<<< HEAD
 <<<<<<< HEAD:front/src/components/certificate/CertificateCard.js
+=======
+>>>>>>> d6034111ea19590ea334509294f106f30babdcb2
         const res = await Api.delete(`certificate/${id}`)
         const {status, message} = res
         if(status === 200) {
             setCertificates((cur) => {
                 const newCertificates = [...cur]
                 let filtered = newCertificates.filter(v => v.id !== id)
+<<<<<<< HEAD
 =======
         const res = await Api.delete(`awards/${id}`, {
             page
@@ -34,6 +38,8 @@ const AwardCard = ({ _award, isEditable, setIsEditing, setAwards, page }) => {
                 const newAwards = [...cur]
                 let filtered = newAwards.filter(v => v.id !== id)
 >>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardCard.js
+=======
+>>>>>>> d6034111ea19590ea334509294f106f30babdcb2
                 return filtered
             })
         } else {
@@ -44,11 +50,15 @@ const AwardCard = ({ _award, isEditable, setIsEditing, setAwards, page }) => {
     return (
         <>
             <Card.Body>
+<<<<<<< HEAD
 <<<<<<< HEAD:front/src/components/certificate/CertificateCard.js
                 {/* certificate의 자격증 이름과 상세내용, 취득일자를 출력 */}
 =======
                 {/* award의 수상내용과 상세내용을 출력 */}
 >>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardCard.js
+=======
+                {/* certificate의 자격증 이름과 상세내용, 취득일자를 출력 */}
+>>>>>>> d6034111ea19590ea334509294f106f30babdcb2
                 <Row className="align-items-center">
                     <Col>
                         <span>{certificate.title}</span>

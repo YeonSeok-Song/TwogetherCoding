@@ -3,6 +3,7 @@ import { Button, Form, Col, Row } from "react-bootstrap"
 import * as Api from "../../api"
 import DatePicker from 'react-datepicker'
 
+<<<<<<< HEAD
 <<<<<<< HEAD:front/src/components/certificate/CertificateAddForm.js
 const CertificateAddForm = ({ portfolioOwnerId, setCertificates, setIsAdding, page }) => {
     // useState로 자격증 이름을 담을 title 변수 선언.
@@ -12,6 +13,11 @@ const AwardAddForm = ({ portfolioOwnerId, setAwards, setIsAdding, page, setAllPa
     // useState로 수상내역의 내용을 담을 title 변수 선언.
     const [award, setAward] = useState("")
 >>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardAddForm.js
+=======
+const CertificateAddForm = ({ portfolioOwnerId, setCertificates, setIsAdding, page }) => {
+    // useState로 자격증 이름을 담을 title 변수 선언.
+    const [title, setTitle] = useState("")
+>>>>>>> d6034111ea19590ea334509294f106f30babdcb2
     // useState로 상세내용을 담을 description 변수 선언.
     const [description, setDescription] = useState("")
     // useState로 취득일자를 담을 date 변수 선언
@@ -32,6 +38,7 @@ const AwardAddForm = ({ portfolioOwnerId, setAwards, setIsAdding, page, setAllPa
             date: date.toJSON()
         })
 
+<<<<<<< HEAD
 <<<<<<< HEAD:front/src/components/certificate/CertificateAddForm.js
         // post 요청값과 함께 각각의 Certificate들의 모임인 Certificates를 다시 렌더링
         const res = await Api.get("certificatelist", `${user_id}?page=${page}&perPage=3`)
@@ -43,6 +50,11 @@ const AwardAddForm = ({ portfolioOwnerId, setAwards, setIsAdding, page, setAllPa
         setAllPage(total)
         setAwards(awards)
 >>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b:front/src/components/award/AwardAddForm.js
+=======
+        // post 요청값과 함께 각각의 Certificate들의 모임인 Certificates를 다시 렌더링
+        const res = await Api.get("certificatelist", `${user_id}?page=${page}&perPage=3`)
+        setCertificates(res.data.certificates)
+>>>>>>> d6034111ea19590ea334509294f106f30babdcb2
         // 생성 상태 종료.
         setIsAdding(false)
     }

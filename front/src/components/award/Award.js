@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> d6034111ea19590ea334509294f106f30babdcb2
 import { useState } from "react"
 import AwardCard from "./AwardCard"
 import AwardEditForm from "./AwardEditForm"
@@ -33,4 +36,7 @@ const Award = ({ _award, setAwards, isEditable, page }) => {
 }
 
 export default Award
+<<<<<<< HEAD
 >>>>>>> 2b954080e2685e9bb8c94080996289b8ede9be6b
+=======
+>>>>>>> d6034111ea19590ea334509294f106f30babdcb2
