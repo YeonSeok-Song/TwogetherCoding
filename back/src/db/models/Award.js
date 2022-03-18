@@ -25,13 +25,27 @@ class Award {
 
     }
 
-    static async findAllUser({ getAward }) {
+    static async findAllToUser({ getAwards }) {
         console.log("findAll");
-        console.log(getAward);
-        const awards = await AwardModel.find({ 
-            user_id : getAward.user_id,
+        console.log(getAwards);
+
+        const total = await AwardModel.countDocuments({ 
+            user_id : getAwards.user_id,
         });
-        return awards;
+
+        const limit = getAwards.perPage;
+        const offset = (getAwards.page - 1) * limit;
+
+        const awards = await AwardModel.find({ 
+            user_id : getAwards.user_id,
+        }).limit(limit).skip(offset);
+
+        const newAwards = { 
+            "total" : total,
+            awards : awards
+        }
+
+        return newAwards;
     }
 
     static async findOne({ getAward }) {

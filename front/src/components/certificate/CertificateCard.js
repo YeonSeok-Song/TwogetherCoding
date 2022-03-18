@@ -2,19 +2,23 @@ import { Card, Button, Row, Col, Modal } from "react-bootstrap"
 import {useState} from 'react'
 import * as Api from "../../api"
 
-const AwardCard = ({ _award, isEditable, setIsEditing, setAwards }) => {
+const CertificateCard = ({ certificate, isEditable, setIsEditing, setCertificates }) => {
     // Modal 관련 State
+    const slicingDate = (date) => {
+        return date.slice(0, 10)
+    }
+
     const [show, setShow] = useState(false)
     const handleShow = () => setShow(true)
     const handleClose = () => setShow(false)
 
     const handleDelete = async (id) => {
-        const res = await Api.delete(`awards/${id}`)
+        const res = await Api.delete(`certificate/${id}`)
         const {status, message} = res
         if(status === 200) {
-            setAwards((cur) => {
-                const newAwards = [...cur]
-                let filtered = newAwards.filter(v => v.id !== id)
+            setCertificates((cur) => {
+                const newCertificates = [...cur]
+                let filtered = newCertificates.filter(v => v.id !== id)
                 return filtered
             })
         } else {
@@ -25,12 +29,14 @@ const AwardCard = ({ _award, isEditable, setIsEditing, setAwards }) => {
     return (
         <>
             <Card.Body>
-                {/* award의 수상내용과 상세내용을 출력 */}
+                {/* certificate의 자격증 이름과 상세내용, 취득일자를 출력 */}
                 <Row className="align-items-center">
                     <Col>
-                        <span>{_award.award}</span>
+                        <span>{certificate.title}</span>
                         <br />
-                        <span className="text-muted">{_award.description}</span>
+                        <span className="text-muted">{certificate.description}</span>
+                        <br />
+                        <span className="text-muted">{slicingDate(certificate.date)}</span>
                     </Col>
                     <Col xs lg="1">
                         {/* 각 항목마다 편집 버튼을 생성 */}
@@ -61,7 +67,7 @@ const AwardCard = ({ _award, isEditable, setIsEditing, setAwards }) => {
                 </Button>
                 <Button variant="danger" onClick={() => {
                     handleClose()
-                    handleDelete(_award.id)
+                    handleDelete(certificate.id)
                     }
                 }>
                     삭제
@@ -72,4 +78,4 @@ const AwardCard = ({ _award, isEditable, setIsEditing, setAwards }) => {
     )
 }
 
-export default AwardCard
+export default CertificateCard
