@@ -5,7 +5,6 @@ import { galleryService } from "../services/galleryService";
 import multer from "multer";
 
 const galleryRouter = Router();
-galleryRouter.use(login_required);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -20,6 +19,7 @@ const upload = multer({ storage: storage }); // storage에 저장, 이미지 크
 
 galleryRouter.post(
   "/gallery/create",
+  login_required, 
   upload.single("gallery"),
   async function (req, res, next) {
     try {
@@ -51,7 +51,7 @@ galleryRouter.post(
   }
 );
 
-galleryRouter.delete("/gallery/:userId/:id", async function (req, res, next) {
+galleryRouter.delete("/gallery/:userId/:id", login_required, async function (req, res, next) {
   try {
     const imageId = req.params.id;
     const result = await galleryService.deleteImage({ imageId });
@@ -66,7 +66,7 @@ galleryRouter.delete("/gallery/:userId/:id", async function (req, res, next) {
   }
 });
 
-galleryRouter.get("/gallery/:userId/:id", async function (req, res, next) {
+galleryRouter.get("/gallery/:userId/:id", login_required, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const imageId = req.params.id;
@@ -84,7 +84,7 @@ galleryRouter.get("/gallery/:userId/:id", async function (req, res, next) {
   }
 });
 
-galleryRouter.get("/gallery/:userId", async function (req, res, next) {
+galleryRouter.get("/gallery/:userId", login_required, async function (req, res, next) {
   try {
     // 특정 사용자의 전체 프로젝트 목록을 얻음
     const userId = req.params.userId;
@@ -99,6 +99,7 @@ galleryRouter.get("/gallery/:userId", async function (req, res, next) {
 
 galleryRouter.patch(
   "/gallery/:userId/:id",
+  login_required, 
   upload.none(),
   async function (req, res, next) {
     try {

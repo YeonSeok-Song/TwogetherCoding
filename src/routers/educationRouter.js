@@ -6,7 +6,7 @@ import { educationService } from "../services/educationService";
 const educationRouter = Router();
 educationRouter.use(login_required)
 
-educationRouter.post("/education/create", async function (req, res, next) {
+educationRouter.post("/education/create", login_required, async function (req, res, next) {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -31,7 +31,7 @@ educationRouter.post("/education/create", async function (req, res, next) {
   }
 });
 
-educationRouter.get("/educations/:id", async function (req, res, next) {
+educationRouter.get("/educations/:id", login_required, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const educationId = req.params.id;
@@ -49,7 +49,7 @@ educationRouter.get("/educations/:id", async function (req, res, next) {
   }
 });
 
-educationRouter.put("/educations/:id", async function (req, res, next) {
+educationRouter.put("/educations/:id", login_required, async function (req, res, next) {
     try {
       // URI로부터 data id를 추출함.
       const educationId = req.params.id;
@@ -72,7 +72,7 @@ educationRouter.put("/educations/:id", async function (req, res, next) {
   }
 );
 
-educationRouter.get("/educationlist/:userId", async function (req, res, next) {
+educationRouter.get("/educationlist/:userId", login_required, async function (req, res, next) {
     try {
       // 특정 사용자의 전체 학력 목록을 얻음
       const userId = req.params.userId;
@@ -88,7 +88,7 @@ educationRouter.get("/educationlist/:userId", async function (req, res, next) {
     }
   });
 
-educationRouter.delete("/educations/:id", async function (req, res, next) {
+educationRouter.delete("/educations/:id", login_required, async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const educationId = req.params.id;
