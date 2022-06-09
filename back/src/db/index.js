@@ -1,6 +1,13 @@
 import mongoose from "mongoose";
 import { User } from "./models/User";
+import { Project } from "./models/Project";
 import { Award } from "./models/Award";
+import { Certificate } from "./models/Certificate";
+import { Education } from "./models/Education";
+import { Comment } from "./models/Comment";
+import { Reply } from "./models/Reply";
+import { Auth } from "./models/Auth";
+import { Gallery } from "./models/Gallery";
 
 const DB_URL =
   process.env.MONGODB_URL ||
@@ -16,4 +23,13 @@ db.on("error", (error) =>
   console.error("MongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error)
 );
 
-export { User, Award};
+export { User };
+export { Project };
+export { Award };
+export { Certificate };
+export { Education };
+export { db };
+export { Comment };
+export { Reply };
+export { Auth };
+export { Gallery };

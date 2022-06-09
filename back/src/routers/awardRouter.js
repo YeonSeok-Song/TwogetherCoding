@@ -5,7 +5,7 @@ import { awardService } from '../services/awardService';
 
 const awardRouter = Router();
 
-awardRouter.get("/awardlist/:user_id", login_required, async (req, res, next) => {
+awardRouter.get("/awardlist/:userId", login_required, async (req, res, next) => {
     try {
 
         if (is.emptyObject(req.query)) {
@@ -18,6 +18,7 @@ awardRouter.get("/awardlist/:user_id", login_required, async (req, res, next) =>
         const perPage = Number(req.query.perPage) || 3;
 
         const getAwards = {
+
             user_id : req.params.user_id ?? req.currentUserId,
             page : page,
             perPage : perPage,
@@ -65,8 +66,9 @@ awardRouter.post("/award/create", login_required, async (req, res, next) => {
     try {
 
         if (is.emptyObject(req.body) || !req.body.user_id || !req.body.title || !req.body.description) {
+
             throw new Error(
-                "데이터를 다시 확인해주세요."
+                "데이터 생성에 필요한 정보가 없습니다. Body안의 데이터를 확인해주세요."
             );
         }
 
@@ -98,9 +100,9 @@ awardRouter.delete("/awards/:id", login_required, async (req, res, next) => {
             );
         }
 
-        const user_id = req.currentUserId;
+        const userId = req.currentUserId;
         const deleteAward = {
-            user_id : user_id,
+            userId : userId,
             id : req.params.id,
         }
 
