@@ -18,7 +18,8 @@ awardRouter.get("/awardlist/:userId", login_required, async (req, res, next) => 
         const perPage = Number(req.query.perPage) || 3;
 
         const getAwards = {
-            userId : req.params.userId,
+
+            user_id : req.params.user_id ?? req.currentUserId,
             page : page,
             perPage : perPage,
         }
@@ -64,15 +65,16 @@ awardRouter.get("/awards/:id", login_required, async (req, res, next) => {
 awardRouter.post("/award/create", login_required, async (req, res, next) => {
     try {
 
-        if (is.emptyObject(req.body) || !req.body.userId || !req.body.award || !req.body.description) {
+        if (is.emptyObject(req.body) || !req.body.user_id || !req.body.title || !req.body.description) {
+
             throw new Error(
                 "데이터 생성에 필요한 정보가 없습니다. Body안의 데이터를 확인해주세요."
             );
         }
 
         const newAward = {
-            userId : req.body.userId,
-            award : req.body.award,
+            user_id : req.body.user_id,
+            title : req.body.title,
             description : req.body.description,
         }
 
@@ -121,13 +123,13 @@ awardRouter.post("/award/:id", login_required, async (req, res, next) => {
     try {
         if (is.emptyObject(req.params) || is.emptyObject(req.body)) {
             throw new Error(
-                "awardID 혹은 Body안의 정보가 없습니다. 다시 확인해주세요."
+                "award 수정에 실패했습니다. awardID 혹은 body안의 데이터를 확인해주세요."
             );
         }
 
         const updateAward = {
             id : req.params.id,
-            changeAward : req.body.changeAward,
+            changeTitle : req.body.changeTitle,
             changeDescription : req.body.changeDescription
         }
 

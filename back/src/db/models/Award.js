@@ -62,9 +62,11 @@ class Award {
             active : true,
         };
         const update = {
-            award : updateAward.changeAward,
+
+            title : updateAward.changeTitle,
             description : updateAward.changeDescription,
             active : true,
+
         };
         const option = { returnOriginal: false };
 
