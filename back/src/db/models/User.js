@@ -20,9 +20,28 @@ class User {
     return user;
   }
 
-  static findAll = async () => {
-    const users = await UserModel.find({ active : true, });
-    return users;
+  static findAll = async ({ search }) => {
+    if (Object.keys(search).length === 0) {
+      return await UserModel.find({ active : true, });  
+    }
+
+    const keyword = Object.keys(search)[0];
+
+    let Query = {};
+    if (keyword == 'email') {
+      Query['email'] = {
+        $regex : `${search[keyword]}.*`
+      }
+      Query['active'] = true
+    }
+    else {
+      Query['name'] = {
+        $regex : `${search[keyword]}.*`
+      }
+      Query['active'] = true
+    }
+    return await UserModel.find(Query)
+                          // .sort({ score: { $meta: "textScore" } });
   }
 
   static update = async ({ userId, fieldToUpdate, newValue }) => {
