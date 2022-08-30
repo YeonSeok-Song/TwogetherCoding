@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js --exec babel-node",
-    "test": "jest --setupFiles dotenv/config"
+    "test": "jest --setupFiles dotenv/config",
+    "unit": "mocha --require @babel/register --recursive test/Unit/routers/test.spec.js",
+    "scenario": "mocha --require @babel/register --recursive test/Scenario/scenario_1.spec.js",
+    "stress": "mocha --require @babel/register --recursive test/Stress/test.spec.js"
   },
   "repository": {
     "type": "git",
@@ -26,9 +29,8 @@
     "jest": "^27.3.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.1",
-    "nodemailer": "^6.7.3",
     "multer": "^1.4.4",
-    "supertest": "^6.1.6",
+    "nodemailer": "^6.7.3",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -37,8 +39,15 @@
     "@babel/node": "^7.16.8",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.4",
+    "artillery": "^2.0.0-23",
     "dotenv": "^16.0.0",
-    "nodemon": "^2.0.15"
+    "mocha": "^10.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "should": "^13.2.3",
+    "supertest": "^6.2.4",
+    "winston": "^3.8.1",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "jest": {
     "testEnvironment": "node",
